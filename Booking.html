@@ -85,9 +85,31 @@
         }
 
 
+        const editButton = document.createElement('input');
+            editButton.type = 'button';
+            editButton.value = 'Edit';
+            editButton.onclick = () => {
+                axios.patch(`https://crudcrud.com/api/5d2ea8a2e0504cb68f3645db6afa5182/bookingApp/${obj._id}`)
+                axios.delete(`https://crudcrud.com/api/84121672e91748a4963e94fc017f8f48/bookingApp/${obj._id}`)
+                .then(() => {
+                    parentElement.removeChild(childElement);
+                    parentElement.removeChild(editButton);
+                    parentElement.removeChild(deleteButton);
+                })
+                    .catch((err) => {
+                    console.log(err);
+                })
+                document.getElementById('name').value = obj.name;
+                document.getElementById('email').value = obj.email;
+                document.getElementById('phNo').value = obj.phNo;
+             }
         
         parentElement.appendChild(childElement);
-        parentElement.appendChild(deleteButton);        
+        parentElement.appendChild(deleteButton);
+        parentElement.append(editButton)
+        parentElement.appendChild(editButton);    
     }
 </script>
 <script src="script.js"></script>
+<body>
+<html>
