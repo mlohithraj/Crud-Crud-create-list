@@ -69,9 +69,25 @@
         const childElement = document.createElement("li")
         childElement.textContent = `${obj.name} + ${obj.email} + ${obj.phNo}`;
 
+        const deleteButton = document.createElement('input');
+        deleteButton.type = 'button';
+        deleteButton.value = 'Delete';
+        deleteButton.onclick = () => {
+            axios.delete(`https://crudcrud.com/api/84121672e91748a4963e94fc017f8f48/bookingApp/${obj._id}`)
+            .then(() => {
+                parentElement.removeChild(childElement);
+                parentElement.removeChild(deleteButton);
+                parentElement.removeChild(editButton);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+
 
         
         parentElement.appendChild(childElement);
+        parentElement.appendChild(deleteButton);        
     }
 </script>
 <script src="script.js"></script>
